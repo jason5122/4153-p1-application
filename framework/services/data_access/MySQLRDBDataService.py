@@ -14,20 +14,18 @@ class MySQLRDBDataService(DataDataService):
 
     def _get_connection(self):
         connection = pymysql.connect(
-            host=self.context["host"],
-            port=self.context["port"],
-            user=self.context["user"],
-            passwd=self.context["password"],
+            host=self.context['host'],
+            port=self.context['port'],
+            user=self.context['user'],
+            passwd=self.context['password'],
             cursorclass=pymysql.cursors.DictCursor,
-            autocommit=True
+            autocommit=True,
         )
         return connection
 
-    def get_data_object(self,
-                        database_name: str,
-                        collection_name: str,
-                        key_field: str,
-                        key_value: str):
+    def get_data_object(
+        self, database_name: str, collection_name: str, key_field: str, key_value: str
+    ):
         """
         See base class for comments.
         """
@@ -36,8 +34,9 @@ class MySQLRDBDataService(DataDataService):
         result = None
 
         try:
-            sql_statement = f"SELECT * FROM {database_name}.{collection_name} " + \
-                        f"where {key_field}=%s"
+            sql_statement = (
+                f'SELECT * FROM {database_name}.{collection_name} ' + f'where {key_field}=%s'
+            )
             connection = self._get_connection()
             cursor = connection.cursor()
             cursor.execute(sql_statement, [key_value])
@@ -47,9 +46,3 @@ class MySQLRDBDataService(DataDataService):
                 connection.close()
 
         return result
-
-
-
-
-
-

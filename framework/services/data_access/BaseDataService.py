@@ -27,11 +27,9 @@ class DataDataService(ABC):
         raise NotImplementedError('Abstract method _get_connection()')
 
     @abstractmethod
-    def get_data_object(self,
-                        database_name: str,
-                        collection_name: str,
-                        key_field: str,
-                        key_value: str):
+    def get_data_object(
+        self, database_name: str, collection_name: str, key_field: str, key_value: str
+    ):
         """
         Gets a single data object from a table in a database. Collection is an abstraction of a
         table in the relational model, collection in MongoDB, etc.
@@ -43,4 +41,3 @@ class DataDataService(ABC):
         :return: The single object identified by the unique field.
         """
         raise NotImplementedError('Abstract method get_data_object()')
-

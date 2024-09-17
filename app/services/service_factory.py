@@ -5,7 +5,6 @@ from framework.services.data_access.MySQLRDBDataService import MySQLRDBDataServi
 
 # TODO -- Implement this class
 class ServiceFactory(BaseServiceFactory):
-
     def __init__(self):
         super().__init__()
 
@@ -17,15 +16,10 @@ class ServiceFactory(BaseServiceFactory):
         if service_name == 'CourseResource':
             result = course_resource.CourseResource(config=None)
         elif service_name == 'CourseResourceDataService':
-            context = dict(user="root", password="dbuserdbuser",
-                           host="localhost", port=3306)
+            context = dict(user='root', password='dbuserdbuser', host='localhost', port=3306)
             data_service = MySQLRDBDataService(context=context)
             result = data_service
         else:
             result = None
 
         return result
-
-
-
-

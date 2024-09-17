@@ -6,22 +6,16 @@ from app.routers import courses
 
 app = FastAPI()
 
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=['*']
-)
+app.add_middleware(CORSMiddleware, allow_origins=['*'])
 
 
 app.include_router(courses.router)
 
 
-@app.get("/")
+@app.get('/')
 async def root():
-    return {"message": "Hello Bigger Applications!"}
+    return {'message': 'Hello Bigger Applications!'}
 
 
-if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0", port=8000)
-
-
-
+if __name__ == '__main__':
+    uvicorn.run(app, host='0.0.0.0', port=8000)
